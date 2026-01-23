@@ -1,6 +1,3 @@
-// Nombre: Andrés Palomino Cassain
-// 45614964F
-// Fecha: 4/11/25 --> 20/11/25
 
 package es.cide.prog;
 

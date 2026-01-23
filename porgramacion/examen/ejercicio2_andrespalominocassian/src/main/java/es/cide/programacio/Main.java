@@ -1,7 +1,3 @@
-//Andrés Palomino Cassain
-//45614964F
-//21/10/25
-
 package es.cide.programacio;
 
 import java.util.Random;
