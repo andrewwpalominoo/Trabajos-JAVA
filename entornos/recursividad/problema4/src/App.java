@@ -5,7 +5,7 @@ public class App {
             return n;
         }
 
-        return sumDigits(n%10)+sumDigits(n/10);
+        return sumDigits(sumDigits(n%10)+sumDigits(n/10));
     }
 
     public static boolean isPerfectPrime(int n) {
@@ -24,8 +24,6 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(sumDigits(555));
-        if (isPerfectPrime(n = true)){
 
-        }
     }
 }
