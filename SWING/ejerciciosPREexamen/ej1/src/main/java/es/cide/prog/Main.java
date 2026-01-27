@@ -1,5 +1,7 @@
 package es.cide.prog;
 
+
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
         JFrame finestra = new JFrame();
         finestra.setSize(500, 400);
+        finestra.setLayout(new FlowLayout());
 
         JButton boton = new JButton("Click aqui");
         boton.setSize(100,50);
