@@ -21,6 +21,7 @@ public class App {
         return orejasPorNumero + orejas(n - 1);
     }
     public static void main(String[] args) throws Exception {
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
 
