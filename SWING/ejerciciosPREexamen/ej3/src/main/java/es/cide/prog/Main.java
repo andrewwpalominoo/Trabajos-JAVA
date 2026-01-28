@@ -1,7 +1,6 @@
 package es.cide.prog;
 
 import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
@@ -21,22 +20,16 @@ public class Main {
         JButton azul = new JButton("Azul");
         azul.setSize(100,50);
 
-        rojo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                finestra.getContentPane().setBackground(new java.awt.Color(255,0,0));
-            }
+        rojo.addActionListener((ActionEvent e) -> {
+            finestra.getContentPane().setBackground(new java.awt.Color(255,0,0));
         });
 
-        verde.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                finestra.getContentPane().setBackground(new java.awt.Color(0,255,0));
-            }
+        verde.addActionListener((ActionEvent e) -> {
+            finestra.getContentPane().setBackground(new java.awt.Color(0,255,0));
         });
 
-        azul.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                finestra.getContentPane().setBackground(new java.awt.Color(0,0,255));
-            }
+        azul.addActionListener((ActionEvent e) -> {
+            finestra.getContentPane().setBackground(new java.awt.Color(0,0,255));
         });
 
         finestra.add(rojo);
