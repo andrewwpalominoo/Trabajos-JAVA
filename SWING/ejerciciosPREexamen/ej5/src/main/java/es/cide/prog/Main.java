@@ -1,6 +1,6 @@
 package es.cide.prog;
 
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,9 +11,10 @@ public class Main {
         JFrame finestra = new JFrame();
         finestra.setSize(400,400);
         finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        finestra.setLayout(new FlowLayout());
+        finestra.setLayout(new GridLayout(4,4));
         JTextField num1 = new JTextField();
         JTextField num2 = new JTextField();
+        JTextField resultado = new JTextField();
 
         JButton sumarButton = new JButton("Sumar");
 
@@ -22,14 +23,15 @@ public class Main {
                 int n1 = Integer.parseInt(num1.getText());
                 int n2 = Integer.parseInt(num2.getText());
                 int suma = n1 + n2;
-                System.out.println("La suma es: " + suma);
+                resultado.setText(String.valueOf(suma));
             });
         } catch (NumberFormatException e) {
-            System.out.println("Error");
+            resultado.setText("Error");
         }
         finestra.add(num1);
         finestra.add(num2);
         finestra.add(sumarButton);
+        finestra.add(resultado);
         finestra.setVisible(true);
     }
 }
