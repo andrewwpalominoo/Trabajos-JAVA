@@ -1,6 +1,7 @@
 package es.cide.prog;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +16,9 @@ public class Main {
         calculadora.setLayout(new BorderLayout());
 
         JPanel panelCalculo = new JPanel();
-        JTextArea calcular = new JTextArea(3, 20);
+        JTextArea registro = new JTextArea(2, 20);
+        registro.setSize(350, 200);
+        JTextArea calcular = new JTextArea(2, 20);
         calcular.setSize(350, 200);
         panelCalculo.setSize(350, 200);
         panelCalculo.add(calcular);
@@ -44,16 +47,38 @@ public class Main {
         boton0.setSize(50, 50);
         JButton botonSuma = new JButton("+");
         botonSuma.setSize(50, 50);
+        botonSuma.setBackground(Color.YELLOW);
         JButton botonResta = new JButton("-");
         botonResta.setSize(50, 50);
+        botonResta.setBackground(Color.YELLOW);
         JButton botonMultiplica = new JButton("*");
         botonMultiplica.setSize(50, 50);
+        botonMultiplica.setBackground(Color.YELLOW);
         JButton botonDivide = new JButton("/");
         botonDivide.setSize(50, 50);
+        botonDivide.setBackground(Color.YELLOW);
         JButton botonIgual = new JButton("=");
+        botonIgual.setBackground(Color.CYAN);
         botonIgual.setSize(50, 50);
         JButton botonClear = new JButton("C");
+        botonClear.setBackground(Color.RED);
         botonClear.setSize(50, 50);
+
+        boton1.addActionListener(e -> calcular.append("1"));
+        boton2.addActionListener(e -> calcular.append("2"));
+        boton3.addActionListener(e -> calcular.append("3"));
+        boton4.addActionListener(e -> calcular.append("4"));
+        boton5.addActionListener(e -> calcular.append("5"));
+        boton6.addActionListener(e -> calcular.append("6"));
+        boton7.addActionListener(e -> calcular.append("7"));
+        boton8.addActionListener(e -> calcular.append("8"));
+        boton9.addActionListener(e -> calcular.append("9"));
+        boton0.addActionListener(e -> calcular.append("0"));
+        botonSuma.addActionListener(e -> calcular.append("+"));
+        botonResta.addActionListener(e -> calcular.append("-"));
+        botonMultiplica.addActionListener(e -> calcular.append("*"));
+        botonDivide.addActionListener(e -> calcular.append("/"));
+        botonClear.addActionListener(e -> calcular.setText(""));
 
         panelNumeros.add(boton1);
         panelNumeros.add(boton2);
@@ -71,7 +96,7 @@ public class Main {
         panelNumeros.add(botonDivide);
         panelNumeros.add(botonIgual);
         panelNumeros.add(botonClear);
-        
+
         calculadora.add(panelCalculo, BorderLayout.NORTH);
         calculadora.add(panelNumeros, BorderLayout.CENTER);
         calculadora.setVisible(true);
