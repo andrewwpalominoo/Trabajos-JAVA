@@ -23,6 +23,7 @@ public class Main {
         panelCalculo.setSize(350, 200);
         panelCalculo.add(calcular);
 
+        //Numeros
         JPanel panelNumeros = new JPanel();
         panelNumeros.setSize(350, 500);
         JButton boton1 = new JButton("1");
@@ -45,6 +46,8 @@ public class Main {
         boton9.setSize(50, 50);
         JButton boton0 = new JButton("0");
         boton0.setSize(50, 50);
+
+        //Calculos
         JButton botonSuma = new JButton("+");
         botonSuma.setSize(50, 50);
         botonSuma.setBackground(Color.YELLOW);
@@ -60,6 +63,8 @@ public class Main {
         JButton botonIgual = new JButton("=");
         botonIgual.setBackground(Color.CYAN);
         botonIgual.setSize(50, 50);
+
+        //Clean
         JButton botonClear = new JButton("C");
         botonClear.setBackground(Color.RED);
         botonClear.setSize(50, 50);
