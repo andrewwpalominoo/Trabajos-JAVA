@@ -15,6 +15,7 @@ public class Main {
         calculadora.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         calculadora.setLayout(new BorderLayout());
 
+        //Creamos el panel de calculo y el area de texto para mostrar el resultado
         JPanel panelCalculo = new JPanel();
         JTextArea registro = new JTextArea(2, 20);
         registro.setSize(350, 200);
@@ -69,6 +70,7 @@ public class Main {
         botonClear.setBackground(Color.RED);
         botonClear.setSize(50, 50);
 
+        //ActionListener de los botones
         boton1.addActionListener(e -> calcular.append("1"));
         boton2.addActionListener(e -> calcular.append("2"));
         boton3.addActionListener(e -> calcular.append("3"));
@@ -85,6 +87,7 @@ public class Main {
         botonDivide.addActionListener(e -> calcular.append("/"));
         botonClear.addActionListener(e -> calcular.setText(""));
 
+        //Agregamos los botones al panel
         panelNumeros.add(boton1);
         panelNumeros.add(boton2);
         panelNumeros.add(boton3);
@@ -102,6 +105,7 @@ public class Main {
         panelNumeros.add(botonIgual);
         panelNumeros.add(botonClear);
 
+        //Agregamos los paneles a la calculadora
         calculadora.add(panelCalculo, BorderLayout.NORTH);
         calculadora.add(panelNumeros, BorderLayout.CENTER);
         calculadora.setVisible(true);
