@@ -28,7 +28,7 @@ public class Main {
         calculadora.setLayout(new BorderLayout());
 
         // Creamos el panel de calculo y el area de texto para mostrar el resultado
-        JTextArea registro = new JTextArea(2, 20);
+        JTextArea registro = new JTextArea(2, 0);
         registro.setEditable(false);
 
         JTextField calcular = new JTextField();
@@ -56,19 +56,19 @@ public class Main {
 
         // Calculos
         JButton botonSuma = new JButton("+");
-        botonSuma.setBackground(Color.YELLOW);
+        botonSuma.setBackground(new Color(255, 188, 27));
         JButton botonResta = new JButton("-");
-        botonResta.setBackground(Color.YELLOW);
+        botonResta.setBackground(new Color(255, 188, 27));
         JButton botonMultiplica = new JButton("*");
-        botonMultiplica.setBackground(Color.YELLOW);
+        botonMultiplica.setBackground(new Color(255, 188, 27));
         JButton botonDivide = new JButton("/");
-        botonDivide.setBackground(Color.YELLOW);
+        botonDivide.setBackground(new Color(255, 188, 27));
         JButton botonIgual = new JButton("=");
-        botonIgual.setBackground(Color.CYAN);
+        botonIgual.setBackground(new Color(70, 172, 255));
 
         // Clean
         JButton botonClear = new JButton("C");
-        botonClear.setBackground(Color.RED);
+        botonClear.setBackground(new Color(255, 70, 70));;
 
         // ActionListener de los botones
         boton1.addActionListener(e -> calcular.setText(calcular.getText() + "1"));
