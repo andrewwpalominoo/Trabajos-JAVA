@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 public class Main {
     // Variables para las operaciones
@@ -21,6 +23,19 @@ public class Main {
 
     // Main
     public static void main(String[] args) {
+        // Look and feel
+        try {
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // If Nimbus is not available, you can set the GUI to another look and feel.
+        }
+        
+        //Creamos el frame principal
         JFrame calculadora = new JFrame("Calculadora");
         calculadora.setSize(400, 550);
         calculadora.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -179,7 +194,8 @@ public class Main {
                                 num2 = "";
                                 op = "";
                                 return;
-                            }   iguala = dig1 / dig2;
+                            }
+                            iguala = dig1 / dig2;
                         }
                     }
                     num1 = String.valueOf(iguala);
@@ -217,7 +233,8 @@ public class Main {
                                 num2 = "";
                                 op = "";
                                 return;
-                            }   iguala = dig1 / dig2;
+                            }
+                            iguala = dig1 / dig2;
                         }
                     }
                     num1 = String.valueOf(iguala);
@@ -254,7 +271,8 @@ public class Main {
                                 num2 = "";
                                 op = "";
                                 return;
-                            }   iguala = dig1 / dig2;
+                            }
+                            iguala = dig1 / dig2;
                         }
                     }
                     num1 = String.valueOf(iguala);
@@ -291,7 +309,8 @@ public class Main {
                                 num2 = "";
                                 op = "";
                                 return;
-                            }   iguala = dig1 / dig2;
+                            }
+                            iguala = dig1 / dig2;
                         }
                     }
                     num1 = String.valueOf(iguala);
@@ -335,7 +354,8 @@ public class Main {
                             num2 = "";
                             op = "";
                             return;
-                        }   iguala = dig1 / dig2;
+                        }
+                        iguala = dig1 / dig2;
                     }
                 }
                 registro.setText(num1 + " " + op + " " + num2 + " = " + iguala);
