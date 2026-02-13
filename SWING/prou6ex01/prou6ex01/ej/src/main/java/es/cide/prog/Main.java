@@ -34,7 +34,7 @@ public class Main {
         } catch (Exception e) {
             // If Nimbus is not available, you can set the GUI to another look and feel.
         }
-        
+
         //Creamos el frame principal
         JFrame calculadora = new JFrame("Calculadora");
         calculadora.setSize(400, 550);
@@ -189,7 +189,7 @@ public class Main {
                             // Invalida numero 2 si este es 0
                             if (dig2 == 0) {
                                 calcular.setText("Error");
-                                registro.setText("No se puede dividir entre 0");
+                                registro.setText("No es posible hacer una división entre 0, prueba con otro numero");
                                 num1 = "";
                                 num2 = "";
                                 op = "";
@@ -228,7 +228,7 @@ public class Main {
                             // Invalida numero 2 si este es 0
                             if (dig2 == 0) {
                                 calcular.setText("Error");
-                                registro.setText("No se puede dividir entre 0");
+                                registro.setText("No es posible hacer una división entre 0, prueba con otro numero");
                                 num1 = "";
                                 num2 = "";
                                 op = "";
@@ -266,7 +266,7 @@ public class Main {
                             // Invalida numero 2 si este es 0
                             if (dig2 == 0) {
                                 calcular.setText("Error");
-                                registro.setText("No se puede dividir entre 0");
+                                registro.setText("No es posible hacer una división entre 0, prueba con otro numero");
                                 num1 = "";
                                 num2 = "";
                                 op = "";
@@ -304,7 +304,7 @@ public class Main {
                             // Invalida numero 2 si este es 0
                             if (dig2 == 0) {
                                 calcular.setText("Error");
-                                registro.setText("No se puede dividir entre 0");
+                                registro.setText("No es posible hacer una división entre 0, prueba con otro numero");
                                 num1 = "";
                                 num2 = "";
                                 op = "";
@@ -349,7 +349,7 @@ public class Main {
                         // Invalida numero 2 si este es 0
                         if (dig2 == 0) {
                             calcular.setText("Error");
-                            registro.setText("No se puede dividir entre 0");
+                                registro.setText("No es posible hacer una división entre 0, prueba con otro numero");
                             num1 = "";
                             num2 = "";
                             op = "";
