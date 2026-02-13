@@ -35,7 +35,7 @@ public class Main {
             // If Nimbus is not available, you can set the GUI to another look and feel.
         }
 
-        //Creamos el frame principal
+        // Creamos el frame principal
         JFrame calculadora = new JFrame("Calculadora");
         calculadora.setSize(400, 550);
         calculadora.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,6 +44,7 @@ public class Main {
         // Creamos el area del registro historico
         JTextArea registro = new JTextArea(2, 0);
         registro.setEditable(false);
+        registro.setFocusable(false);
 
         // Textfield del calculo
         JTextField calcular = new JTextField();
@@ -73,18 +74,24 @@ public class Main {
         // Calculos
         JButton botonSuma = new JButton("+");
         botonSuma.setBackground(new Color(255, 188, 27));
+        botonSuma.setFocusable(false);
         JButton botonResta = new JButton("-");
         botonResta.setBackground(new Color(255, 188, 27));
+        botonResta.setFocusable(false);
         JButton botonMultiplica = new JButton("*");
         botonMultiplica.setBackground(new Color(255, 188, 27));
+        botonMultiplica.setFocusable(false);
         JButton botonDivide = new JButton("/");
         botonDivide.setBackground(new Color(255, 188, 27));
+        botonDivide.setFocusable(false);
         JButton botonIgual = new JButton("=");
         botonIgual.setBackground(new Color(70, 172, 255));
+        botonIgual.setFocusable(false);
 
-        // Clean
+        // Clear
         JButton botonClear = new JButton("C");
         botonClear.setBackground(new Color(255, 70, 70));
+        botonClear.setFocusable(false);
 
         // ActionListener de los botones, los de numero agregan el numero al textfield y
         // reinician el campo nuevaOperacion
@@ -96,6 +103,7 @@ public class Main {
             calcular.setText(calcular.getText() + "1");
             num2 = calcular.getText();
         });
+        boton1.setFocusable(false);
         boton2.addActionListener(e -> {
             if (nuevaOperacion) {
                 calcular.setText("");
@@ -104,6 +112,7 @@ public class Main {
             calcular.setText(calcular.getText() + "2");
             num2 = calcular.getText();
         });
+        boton2.setFocusable(false);
         boton3.addActionListener(e -> {
             if (nuevaOperacion) {
                 calcular.setText("");
@@ -112,6 +121,7 @@ public class Main {
             calcular.setText(calcular.getText() + "3");
             num2 = calcular.getText();
         });
+        boton3.setFocusable(false);
         boton4.addActionListener(e -> {
             if (nuevaOperacion) {
                 calcular.setText("");
@@ -120,6 +130,7 @@ public class Main {
             calcular.setText(calcular.getText() + "4");
             num2 = calcular.getText();
         });
+        boton4.setFocusable(false);
         boton5.addActionListener(e -> {
             if (nuevaOperacion) {
                 calcular.setText("");
@@ -128,6 +139,7 @@ public class Main {
             calcular.setText(calcular.getText() + "5");
             num2 = calcular.getText();
         });
+        boton5.setFocusable(false);
         boton6.addActionListener(e -> {
             if (nuevaOperacion) {
                 calcular.setText("");
@@ -136,6 +148,7 @@ public class Main {
             calcular.setText(calcular.getText() + "6");
             num2 = calcular.getText();
         });
+        boton6.setFocusable(false);
         boton7.addActionListener(e -> {
             if (nuevaOperacion) {
                 calcular.setText("");
@@ -144,6 +157,7 @@ public class Main {
             calcular.setText(calcular.getText() + "7");
             num2 = calcular.getText();
         });
+        boton7.setFocusable(false);
         boton8.addActionListener(e -> {
             if (nuevaOperacion) {
                 calcular.setText("");
@@ -152,6 +166,7 @@ public class Main {
             calcular.setText(calcular.getText() + "8");
             num2 = calcular.getText();
         });
+        boton8.setFocusable(false);
         boton9.addActionListener(e -> {
             if (nuevaOperacion) {
                 calcular.setText("");
@@ -160,6 +175,7 @@ public class Main {
             calcular.setText(calcular.getText() + "9");
             num2 = calcular.getText();
         });
+        boton9.setFocusable(false);
         boton0.addActionListener(e -> {
             if (nuevaOperacion) {
                 calcular.setText("");
@@ -168,6 +184,7 @@ public class Main {
             calcular.setText(calcular.getText() + "0");
             num2 = calcular.getText();
         });
+        boton0.setFocusable(false);
         // ActionListener de operaciones, si ya hay una operacion se realiza primero,
         // sino se guarda el numero introducido como num1, luego se guarda la operacion
         // y se limpia el campo de texto para introducir el siguiente numero
@@ -349,7 +366,7 @@ public class Main {
                         // Invalida numero 2 si este es 0
                         if (dig2 == 0) {
                             calcular.setText("Error");
-                                registro.setText("No es posible hacer una división entre 0, prueba con otro numero");
+                            registro.setText("No es posible hacer una división entre 0, prueba con otro numero");
                             num1 = "";
                             num2 = "";
                             op = "";
