@@ -134,7 +134,7 @@ public class Main {
                 x = jug1x + 15;
             }
             // Colisiones con Jugador 2
-            if (x + 2 * RADI >= jug2x && x + 2 * RADI <= jug2x && y + 2 * RADI >= jug2y && y <= jug2y + 100) {
+            if (x + 2 * RADI >= jug2x && x + 2 * RADI <= jug2x + 100 && y + 2 * RADI >= jug2y && y <= jug2y + 100) {
                 dx = -dx;
                 x = jug2x - 2 * RADI;
             }
