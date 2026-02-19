@@ -20,14 +20,16 @@ import javax.swing.Timer;
 public class Main {
 
     public static class CirculoRebotante extends JPanel implements ActionListener, KeyListener {
-        private int x = 50, y = 50;
+        private int x = 390, y = 220;
         private int dx = 2, dy = 2;
         private final int RADI = 10;
         private final int DELAY = 10;
         private Timer timer;
+        private int puntosJug1 = 0;
+        private int puntosJug2 = 0;
 
         public CirculoRebotante() {
-            setBackground(Color.WHITE);
+            setBackground(new Color(230, 131, 247));
             timer = new Timer(DELAY, this);
             timer.start();
             addKeyListener(this);
@@ -35,11 +37,11 @@ public class Main {
             requestFocusInWindow();
         }
 
-        // Variables Jugador 1
+        // Variables Jugador 1 (posicion y velocidad)
         private int jug1x = 10, jug1y = 180;
         private int jug1speedx = 5, jug1speedy = 5;
 
-        // Variables Jugador 2
+        // Variables Jugador 2 (posicion y velocidad)
         private int jug2x = 760, jug2y = 180;
         private int jug2speedx = 5, jug2speedy = 5;
 
@@ -50,6 +52,7 @@ public class Main {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g;
             g2d.setColor(Color.BLACK);
+
             g2d.fillOval(x, y, RADI * 2, RADI * 2);
 
             // Rectangulo 1
@@ -65,11 +68,11 @@ public class Main {
 
             // Texto Jugador 1
             g2d.setColor(Color.BLACK);
-            g2d.drawString("Jugador 1: 0", 150, 25);
+            g2d.drawString("Jugador 1: " + puntosJug1, 150, 25);
 
             // Texto Jugador 2
             g2d.setColor(Color.BLACK);
-            g2d.drawString("Jugador 2: 0", 550, 25);
+            g2d.drawString("Jugador 2: " + puntosJug2, 550, 25);
         }
 
         // Movimientos (Jugador 1 con W y S, Jugador 2 con flecha arriba y abajo)
@@ -94,11 +97,46 @@ public class Main {
         public void keyTyped(KeyEvent e) {
         }
 
-        // Moviimiento circulo
+        // Movimientos circulo
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (x + 2 * RADI >= getWidth() || x <= 0) {
+
+            // Limites para los rectangulos, al llegar a su limite no puedes subir/bajar mas
+            if (jug1y <= 0) {
+                jug1y = 0;
+            } else if (jug1y >= 360) {
+                jug1y = 360;
+            }
+
+            if (jug2y <= 0) {
+                jug2y = 0;
+            } else if (jug2y >= 360) {
+                jug2y = 360;
+            }
+
+            // Si la pelota choca con algun lado, suma un punto al contrario y resetea el
+            // balon al medio
+            if (x + 2 * RADI >= getWidth()) {
                 dx = -dx;
+                puntosJug1++;
+                x = 390;
+                y = 220;
+            }
+            if (x <= 0) {
+                dx = -dx;
+                puntosJug2++;
+                x = 390;
+                y = 220;
+            }
+            // Colisiones con Jugador 1
+            if (x <= jug1x + 15 && x >= jug1x && y + 2 * RADI >= jug1y && y <= jug1y + 100) {
+                dx = -dx;
+                x = jug1x + 15;
+            }
+            // Colisiones con Jugador 2
+            if (x + 2 * RADI >= jug2x && x + 2 * RADI <= jug2x && y + 2 * RADI >= jug2y && y <= jug2y + 100) {
+                dx = -dx;
+                x = jug2x - 2 * RADI;
             }
             if (y + 2 * RADI >= getHeight() || y <= 0) {
                 dy = -dy;
