@@ -32,7 +32,7 @@ public class Main {
 
     public static class CirculoRebotante extends JPanel implements ActionListener, KeyListener {
         private int x = 390, y = 220;
-        private int dx = 2, dy = 2;
+        private int dx = 5, dy = 5;
         private final int RADI = 10;
         private final int DELAY = 10;
         private Timer timer;
@@ -48,11 +48,11 @@ public class Main {
 
         // Variables Jugador 1 (posicion y velocidad)
         private int jug1x = 10, jug1y = 180;
-        private int jug1speedx = 5, jug1speedy = 5;
+        private int jug1speedx = 10, jug1speedy = 10;
 
         // Variables Jugador 2 (posicion y velocidad)
         private int jug2x = 760, jug2y = 180;
-        private int jug2speedx = 5, jug2speedy = 5;
+        private int jug2speedx = 10, jug2speedy = 10;
 
         @Override
         protected void paintComponent(Graphics g) {
@@ -166,6 +166,7 @@ public class Main {
             pong.add(panel);
             pong.setSize(800, 500);
             pong.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            pong.setResizable(false);
             pong.setLocationRelativeTo(null);
 
             pong.setVisible(false);
