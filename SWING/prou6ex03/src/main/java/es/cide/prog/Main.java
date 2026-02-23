@@ -5,19 +5,30 @@
 package es.cide.prog;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 public class Main {
+
+    // Creamos puntos como static para que sean accesible desde las distintas clases
+    static int puntosJug1 = 0;
+    static int puntosJug2 = 0;
 
     public static class CirculoRebotante extends JPanel implements ActionListener, KeyListener {
         private int x = 390, y = 220;
@@ -25,8 +36,6 @@ public class Main {
         private final int RADI = 10;
         private final int DELAY = 10;
         private Timer timer;
-        private int puntosJug1 = 0;
-        private int puntosJug2 = 0;
 
         public CirculoRebotante() {
             setBackground(new Color(230, 131, 247));
@@ -51,7 +60,7 @@ public class Main {
             // Circulo
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(Color.BLACK);
+            g2d.setColor(Color.MAGENTA);
 
             g2d.fillOval(x, y, RADI * 2, RADI * 2);
 
@@ -150,6 +159,8 @@ public class Main {
     // Main
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
+
+            // Ventana del juego
             JFrame pong = new JFrame("POOng!");
             CirculoRebotante panel = new CirculoRebotante();
             pong.add(panel);
@@ -157,7 +168,73 @@ public class Main {
             pong.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             pong.setLocationRelativeTo(null);
 
-            pong.setVisible(true);
+            pong.setVisible(false);
+
+            // Creamos menu prinicpal
+            JFrame inicial = new JFrame("POOng! - Menú principal");
+            inicial.setSize(600, 450);
+            inicial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            inicial.setResizable(false);
+            inicial.setLocationRelativeTo(null); // Centra ventana
+
+            JPanel panelInicio = new JPanel();
+            panelInicio.setLayout(new GridBagLayout());
+            panelInicio.setBackground(new Color(230, 131, 247));
+
+            // Estructura del menú
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(10, 10, 10, 10);
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+
+            JLabel titulo = new JLabel("POOng!", JLabel.CENTER);
+            titulo.setFont(new Font("Arial", Font.BOLD, 40));
+            titulo.setForeground(Color.BLACK);
+
+            JButton start = new JButton("Empezar Juego");
+            start.setFont(new Font("Arial", Font.BOLD, 20));
+            start.setBackground(Color.WHITE);
+            // ActionListener al pulsar el boton
+            start.addActionListener((ActionEvent e) -> {
+                // Cierra menú
+                inicial.dispose();
+
+                // Abre juego
+                pong.setVisible(true);
+                puntosJug1 = 0;
+                puntosJug2 = 0;
+            });
+
+            JButton reglas = new JButton("Cómo jugar?");
+            reglas.setFont(new Font("Arial", Font.BOLD, 20));
+            reglas.setBackground(Color.WHITE);
+            reglas.addActionListener(l -> {
+                JOptionPane.showMessageDialog(inicial, "Utiliza las telcas W y S para mover al jugador 1 (Izquierda) \n"
+                        + //
+                        "Utiliza las flechas de arriba y abajo para mover al jugador 2 (Derecha) \n" + //
+                        "Debes evitar que la pelota toque tu lado utilizando tu pala para bloquearla, si toca, sumará un punto al rival.");
+            });
+
+            // Titulo
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.gridwidth = 2;
+            panelInicio.add(titulo, gbc);
+
+            // Boton start
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.gridwidth = 2;
+            panelInicio.add(start, gbc);
+
+            // Boton reglas
+            gbc.gridx = 0; // columna 0
+            gbc.gridy = 2; // fila 6
+            gbc.gridwidth = 2; // ocupa 2 columnas
+            panelInicio.add(reglas, gbc);
+
+            inicial.add(panelInicio);
+            inicial.setVisible(true);
+
         });
     }
 }
