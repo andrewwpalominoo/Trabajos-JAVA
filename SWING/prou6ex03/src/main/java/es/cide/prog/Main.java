@@ -82,6 +82,7 @@ public class Main {
             // Texto Jugador 2
             g2d.setColor(Color.BLACK);
             g2d.drawString("Jugador 2: " + puntosJug2, 550, 25);
+
         }
 
         // Movimientos (Jugador 1 con W y S, Jugador 2 con flecha arriba y abajo)
@@ -188,11 +189,11 @@ public class Main {
             gbc.fill = GridBagConstraints.HORIZONTAL;
 
             JLabel titulo = new JLabel("POOng!", JLabel.CENTER);
-            titulo.setFont(new Font("Arial", Font.BOLD, 40));
+            titulo.setFont(new Font("Monospaced", Font.BOLD, 40));
             titulo.setForeground(Color.BLACK);
 
             JButton start = new JButton("Empezar Juego");
-            start.setFont(new Font("Arial", Font.BOLD, 20));
+            start.setFont(new Font("Monospaced", Font.BOLD, 20));
             start.setBackground(Color.WHITE);
             // ActionListener al pulsar el boton
             start.addActionListener((ActionEvent e) -> {
@@ -206,7 +207,7 @@ public class Main {
             });
 
             JButton reglas = new JButton("Cómo jugar?");
-            reglas.setFont(new Font("Arial", Font.BOLD, 20));
+            reglas.setFont(new Font("Monospaced", Font.BOLD, 20));
             reglas.setBackground(Color.WHITE);
             reglas.addActionListener(l -> {
                 JOptionPane.showMessageDialog(inicial, "Utiliza las telcas W y S para mover al jugador 1 (Izquierda) \n"
