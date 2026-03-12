@@ -1,6 +1,6 @@
 // Andrés Palomino Cassain
 // DNI:
-// 13/02/26 -> 
+// 13/02/26 -> 10/03/26
 
 package es.cide.prog;
 
@@ -21,6 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -30,9 +31,14 @@ public class Main {
     static int puntosJug1 = 0;
     static int puntosJug2 = 0;
 
+    // Nombres de los jugadores con nombre default
+    static String player1Name = "Jugador 1";
+    static String player2Name = "Jugador 2";
+
+    // Panel del juego, dibujos y movimientos
     public static class CirculoRebotante extends JPanel implements ActionListener, KeyListener {
         private int x = 390, y = 220;
-        private int dx = 5, dy = 5;
+        private int dx = 3, dy = 3;
         private final int RADI = 10;
         private final int DELAY = 10;
         private Timer timer;
@@ -48,11 +54,11 @@ public class Main {
 
         // Variables Jugador 1 (posicion y velocidad)
         private int jug1x = 10, jug1y = 180;
-        private int jug1speedx = 10, jug1speedy = 10;
+        private int jug1speedy = 10;
 
         // Variables Jugador 2 (posicion y velocidad)
         private int jug2x = 760, jug2y = 180;
-        private int jug2speedx = 10, jug2speedy = 10;
+        private int jug2speedy = 10;
 
         @Override
         protected void paintComponent(Graphics g) {
@@ -77,11 +83,11 @@ public class Main {
 
             // Texto Jugador 1
             g2d.setColor(Color.BLACK);
-            g2d.drawString("Jugador 1: " + puntosJug1, 150, 25);
+            g2d.drawString(player1Name + ": " + puntosJug1, 150, 25);
 
             // Texto Jugador 2
             g2d.setColor(Color.BLACK);
-            g2d.drawString("Jugador 2: " + puntosJug2, 550, 25);
+            g2d.drawString(player2Name + ": " + puntosJug2, 550, 25);
 
         }
 
@@ -90,10 +96,10 @@ public class Main {
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
             switch (key) {
-                case KeyEvent.VK_W -> jug1y -= jug1speedy;
-                case KeyEvent.VK_S -> jug1y += jug1speedy;
-                case KeyEvent.VK_UP -> jug2y -= jug2speedy;
-                case KeyEvent.VK_DOWN -> jug2y += jug2speedy;
+                case KeyEvent.VK_W -> jug1y -= jug1speedy; // W arriba
+                case KeyEvent.VK_S -> jug1y += jug1speedy; // S abajo
+                case KeyEvent.VK_UP -> jug2y -= jug2speedy; // Flecha arriba
+                case KeyEvent.VK_DOWN -> jug2y += jug2speedy; // Flecha abajo
             }
 
             repaint();
@@ -101,11 +107,11 @@ public class Main {
 
         @Override
         public void keyReleased(KeyEvent e) {
-        }
+        } // No utilizado
 
         @Override
         public void keyTyped(KeyEvent e) {
-        }
+        } // No utilizado
 
         // Movimientos circulo
         @Override
@@ -157,6 +163,16 @@ public class Main {
         }
     }
 
+    // Obtener nombre de los jugadores para mostrarlo en el marcador
+    // Se introducen en el menú mas adelante
+            public static String getPlayer1() {
+                return player1Name;
+            }
+
+            public static String getPlayer2() {
+                return player2Name;
+            }
+
     // Main
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -167,10 +183,10 @@ public class Main {
             pong.add(panel);
             pong.setSize(800, 500);
             pong.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            pong.setResizable(false);
-            pong.setLocationRelativeTo(null);
+            pong.setResizable(false); // Paara evitar problemas
+            pong.setLocationRelativeTo(null); // Centra ventana
 
-            pong.setVisible(false);
+            pong.setVisible(false); // False hasta que se inicie el juego
 
             // Creamos menu prinicpal
             JFrame inicial = new JFrame("POOng! - Menú principal");
@@ -180,10 +196,10 @@ public class Main {
             inicial.setLocationRelativeTo(null); // Centra ventana
 
             JPanel panelInicio = new JPanel();
-            panelInicio.setLayout(new GridBagLayout());
+            panelInicio.setLayout(new GridBagLayout()); // Organiza
             panelInicio.setBackground(new Color(230, 131, 247));
 
-            // Estructura del menú
+            // Estructura del menú utilizando GridBagLayout para posicionar los elementos
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.insets = new Insets(10, 10, 10, 10);
             gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -195,8 +211,19 @@ public class Main {
             JButton start = new JButton("Empezar Juego");
             start.setFont(new Font("Monospaced", Font.BOLD, 20));
             start.setBackground(Color.WHITE);
+
+            // TextFields para los nombres de los jugadores
+            JTextField player1Field = new JTextField("Jugador 1");
+            JTextField player2Field = new JTextField("Jugador 2");
+            player1Field.setFont(new Font("Monospaced", Font.PLAIN, 16));
+            player2Field.setFont(new Font("Monospaced", Font.PLAIN, 16));
+
             // ActionListener al pulsar el boton
             start.addActionListener((ActionEvent e) -> {
+                // Guarda los nombres
+                player1Name = player1Field.getText().trim();
+                player2Name = player2Field.getText().trim();
+
                 // Cierra menú
                 inicial.dispose();
 
@@ -206,6 +233,7 @@ public class Main {
                 puntosJug2 = 0;
             });
 
+            // Boton para leer las reglas del juego
             JButton reglas = new JButton("Cómo jugar?");
             reglas.setFont(new Font("Monospaced", Font.BOLD, 20));
             reglas.setBackground(Color.WHITE);
@@ -217,9 +245,9 @@ public class Main {
             });
 
             // Titulo
-            gbc.gridx = 0;
-            gbc.gridy = 0;
-            gbc.gridwidth = 2;
+            gbc.gridx = 0; // Columna
+            gbc.gridy = 0; // Fila
+            gbc.gridwidth = 2; // Columas que ocupa
             panelInicio.add(titulo, gbc);
 
             // Boton start
@@ -229,14 +257,27 @@ public class Main {
             panelInicio.add(start, gbc);
 
             // Boton reglas
-            gbc.gridx = 0; // columna 0
-            gbc.gridy = 2; // fila 6
-            gbc.gridwidth = 2; // ocupa 2 columnas
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.gridwidth = 2;
             panelInicio.add(reglas, gbc);
+
+            // posiciona la etiqueta del jugador 1
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            gbc.gridwidth = 2;
+            panelInicio.add(player1Field, gbc);
+
+            // posiciona la etiqueta del jugador 2
+            gbc.gridx = 0;
+            gbc.gridy = 4;
+            gbc.gridwidth = 2;
+            panelInicio.add(player2Field, gbc);
 
             inicial.add(panelInicio);
             inicial.setVisible(true);
 
         });
+
     }
 }
