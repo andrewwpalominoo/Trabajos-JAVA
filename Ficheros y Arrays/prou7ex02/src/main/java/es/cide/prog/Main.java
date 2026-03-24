@@ -9,14 +9,25 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
 
 public class Main {
     public static void main(String[] args) {
+        // Look and feel
+        try {
+            JFrame.setDefaultLookAndFeelDecorated(true);
+            JDialog.setDefaultLookAndFeelDecorated(true);
+            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         JFrame frame = new JFrame("Editor de texto");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout(10, 10));
@@ -42,14 +53,14 @@ public class Main {
         scrollPane.setViewportView(textArea);
         areaTexto.add(scrollPane);
 
-        //Acciones de los botones
-        //Botón Nuevo
+        // Acciones de los botones
+        // Botón Nuevo
         button1.addActionListener(e -> {
             textArea.setText("");
             files[0] = null;
         });
 
-        //Botón Abrir
+        // Botón Abrir
         button2.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             int result = fileChooser.showOpenDialog(frame);
@@ -66,9 +77,21 @@ public class Main {
             }
         });
 
-        //Botón Guardar
+        // Botón Guardar
         button3.addActionListener(e -> {
             if (files[0] != null) {
+                writeInFile(files[0], textArea.getText(), frame);
+            } else {
+                button4.doClick();
+            }
+        });
+
+        // Botón Guardar como
+        button4.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            int result = fileChooser.showSaveDialog(frame);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                files[0] = fileChooser.getSelectedFile();
                 writeInFile(files[0], textArea.getText(), frame);
             }
         });
