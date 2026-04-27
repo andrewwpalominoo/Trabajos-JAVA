@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 public class Main {
     public static void main(String[] args) {
         //Ajuste de la ventana segun enunciado: no redimensionable
-        JFrame frame = new JFrame("Filtre de Seguretat de Passwords - [Blai]");
+        JFrame frame = new JFrame("Filtre de Seguretat de Passwords");
         frame.setSize(750, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
